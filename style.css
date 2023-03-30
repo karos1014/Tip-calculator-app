@@ -232,6 +232,10 @@ header p {
     cursor: pointer;
 }
 
+.container .bill-result #reset-btn.available:hover {
+    background-color: rgb(188, 255, 246)
+}
+
 @media (max-width: 760px) {
     .container {
         flex-direction: column;
