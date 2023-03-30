@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+:root {
+    /* ## Colors */
+    /* ### Primary */
+    --Strong-cyan: hsl(172, 67%, 45%);
+    /* ### Neutral */
+    --Very-dark-cyan: hsl(183, 100%, 15%);
+    --Dark-grayish-cyan: hsl(186, 14%, 43%);
+    --Grayish-cyan: hsl(184, 14%, 56%);
+    --Light-grayish-cyan: hsl(185, 41%, 84%);
+    --Very-light-grayish-cyan: hsl(189, 41%, 97%);
+    --White: hsl(0, 0%, 100%);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Space Mono', monospace;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--Light-grayish-cyan);
+    padding-block: 30px;
+}
+
+header p {
+    color: var(--Very-dark-cyan);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 25px;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    background-color: var(--White);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.container .bill-info {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.container .bill-info label {
+    color: var(--Grayish-cyan);
+    width: fit-content;
+}
+
+.container .bill-info .bill-price,
+.container .bill-info .people-count {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.container .bill-info .inp {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.container .bill-info .inp input {
+    padding: 5px 10px 5px 30px;
+    background-color: var(--Very-light-grayish-cyan);
+    border: none;
+    outline: transparent;
+    border-radius: 5px;
+    width: 100%;
+    color: var(--Very-dark-cyan);
+    font-size: 18px;
+    caret-color: var(--Very-dark-cyan);
+    border: 1px solid transparent;
+    transition: .1s;
+    cursor: pointer;
+    text-align: end;
+}
+
+.container .bill-info .inp input.error {
+    border-color: red !important;
+}
+
+.container .bill-info .inp input:focus {
+    cursor: auto;
+}
+
+.container .bill-info .inp input::placeholder {
+    color: var(--Grayish-cyan);
+
+}
+
+.container .bill-info .inp img {
+    position: absolute;
+    left: 10px;
+    pointer-events: none;
+}
+
+.container .bill-info .tip {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.container .bill-info .tip .choices {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.container .bill-info .tip .choices button,
+.container .bill-info .tip .choices input {
+    width: calc(325px / 3 - 10px);
+}
+
+.container .bill-info .tip .choices button {
+    color: var(--White);
+    background-color: var(--Very-dark-cyan);
+    padding-block: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 18px;
+}
+
+
+.container .bill-info .tip .choices button:hover {
+    background-color: hsla(172, 67%, 45%, .4);
+    color: var(--Very-dark-cyan);
+}
+
+.container .bill-info .tip .choices button.selected {
+    background-color:  var(--Strong-cyan);
+    color: var(--Very-dark-cyan);
+}
+
+.container .bill-info .tip .choices input {
+    font-size: 18px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-align: end;
+    padding-right: 8px;
+    cursor: pointer;
+    color: var(--Very-dark-cyan);
+    background-color: var(--Very-light-grayish-cyan);
+    outline: transparent;
+    transition: .1s;
+    caret-color: var(--Very-dark-cyan);
+}
+
+.container .bill-info .tip .choices input.error {
+    border-color: red !important;
+}
+
+.container .bill-info .tip .choices input::placeholder {
+    position: absolute;
+    left: 50%;
+    top: 2px;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: var(--Dark-grayish-cyan);
+    text-align: center;
+}
+
+.container .bill-info .tip .choices input:focus {
+    cursor: auto;
+    border-color: var(--Strong-cyan);
+}
+
+.container .bill-result {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 320px;
+    background-color: var(--Very-dark-cyan);
+    border-radius: 10px;
+    padding: 40px 30px;
+}
+
+.container .bill-result .tip-per-person,
+.container .bill-result .total-per-person {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .bill-result .title p:first-child {
+    color: var(--White);
+    text-transform: capitalize;
+}
+
+.container .bill-result .title p:last-child {
+    color: var(--Grayish-cyan);
+    font-size: 12px;
+}
+
+.container .bill-result span {
+    font-size: 28px;
+    color: var(--Strong-cyan);
+}
+
+.container .bill-result #reset-btn {
+    position: absolute;
+    bottom: 30px;
+    width: calc(100% - 40px);
+    background-color: hsl(172, 67%, 45%, .2);
+    color: var(--Very-dark-cyan);
+    padding-block: 6px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    border: none;
+    align-self: center;
+    transition: .2s;
+}
+
+.container .bill-result #reset-btn.available {
+    background-color: var(--Strong-cyan);
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .container {
+        flex-direction: column;
+    }
+    .container .bill-result {
+        padding-bottom: 80px;
+    }
+    .container .bill-result button {
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 430px) {
+    .container {
+        padding: 20px;
+    }
+    .container .bill-info,
+    .container .bill-result {
+        width: 230px;
+    }
+    .container .bill-info .tip .choices button,
+    .container .bill-info .tip .choices input {
+        width: calc(235px / 2 - 10px);
+    }
+    .container .bill-result {
+        padding: 30px 20px 80px;
+    }
+    .container .bill-result .title p:first-child {
+        font-size: 13px;
+    }
+    .container .bill-result .title p:last-child {
+        font-size: 10px;
+    }
+    .container .bill-result span {
+        font-size: 23px;
+    }
+}
