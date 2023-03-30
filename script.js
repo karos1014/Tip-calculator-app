@@ -1,5 +1,5 @@
 function calculate() {
-    if (nonZeroInputs.every(inp => inp.value !== "" && inp.value !== "0" && !inp.classList.contains("error"))) {
+    if (nonZeroInputs.every(inp => inp.value !== "" && inp.value !== "0" && !inp.classList.contains("error")) && inputs.every(inp => inp.value !== ".")) {
         setTimeout(() => {
             let totalPrice = +bill.value + +bill.value * tip / 100;
             tipPerPerson.textContent = `$${(+bill.value * tip / 100 / people.value).toFixed(2)}`;
@@ -34,6 +34,7 @@ inputs.forEach(inp => {
         if (!onlyNumbers.test(e.key) || inp.value == "0" && e.key === "0") e.preventDefault()
         else if (inp.value == "0" && /\d/.test(e.key)) inp.value = ""
         else if (inp.selectionStart === 0 && e.key === "0" && inp.value.length > 0) e.preventDefault()
+        else if (inp === people && e.key === ".") e.preventDefault()
         if (e.key === "." && inp.value.includes(".")) e.preventDefault()
         setTimeout(() => {
             if (inputs.some(inp => inp.value !== "")) resetBtn.classList.add("available")
@@ -44,19 +45,21 @@ inputs.forEach(inp => {
     inp.addEventListener("mousedown", _ => {
         setTimeout(() => {
             if(!isFocus) {inp.selectionStart = inp.value.length; isFocus = true}
-        }, 100);
+        }, 0);
     })
     inp.addEventListener("blur", _ => {
         isFocus = false;
-        inp.value === "" ? inp.classList.add("error") : inp.classList.remove("error")
+        function showError(message) {
+            inp.classList.add("error");
+            errorMessage.textContent = message;
+            inp.parentElement.append(errorMessage);
+        }
         if (nonZeroInputs.includes(inp) && inp.value === "") {
-            inp.classList.add("error");
-            errorMessage.textContent = "Can't be blank"
-            inp.parentElement.appendChild(errorMessage)
+            showError("Can't be blank")
         } else if (nonZeroInputs.includes(inp) && inp.value === "0") {
-            inp.classList.add("error");
-            errorMessage.textContent = "Can't be zero"
-            inp.parentElement.appendChild(errorMessage)
+            showError("Can't be zero")
+        } else if (inp.value === ".") {
+            showError("Wrong format")
         } else {
             inp.classList.remove("error");
             if (inp.parentElement.contains(errorMessage)) inp.parentElement.removeChild(errorMessage)
